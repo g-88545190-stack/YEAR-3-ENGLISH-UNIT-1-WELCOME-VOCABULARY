@@ -1,0 +1,1868 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Year 3 English - Unit 1: Welcome! 词汇与语法闪卡闯关游戏</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Nunito & Noto Sans SC -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <style>
+    :root {
+      --font-main: 'Nunito', 'Noto Sans SC', sans-serif;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background: linear-gradient(135deg, #e0f2fe 0%, #fef9c3 50%, #fce7f3 100%);
+      min-height: 100vh;
+      color: #1e293b;
+      overflow-x: hidden;
+    }
+
+    /* 3D 卡片翻转效果 */
+    .perspective-1000 {
+      perspective: 1000px;
+    }
+    .transform-style-3d {
+      transform-style: preserve-3d;
+      transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .rotate-y-180 {
+      transform: rotateY(180deg);
+    }
+    .backface-hidden {
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+
+    /* 卡通立体按钮样式 */
+    .btn-chunky {
+      transition: all 0.15s ease;
+      box-shadow: 0 5px 0 rgba(0, 0, 0, 0.18);
+    }
+    .btn-chunky:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 7px 0 rgba(0, 0, 0, 0.18);
+    }
+    .btn-chunky:active:not(:disabled) {
+      transform: translateY(3px);
+      box-shadow: 0 2px 0 rgba(0, 0, 0, 0.18);
+    }
+    .btn-chunky:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+      box-shadow: none;
+      transform: translateY(2px);
+    }
+
+    /* 音波跳动动画 */
+    @keyframes soundWave {
+      0%, 100% { height: 6px; }
+      50% { height: 22px; }
+    }
+    .wave-bar {
+      animation: soundWave 0.6s infinite ease-in-out;
+    }
+    .wave-bar:nth-child(2) { animation-delay: 0.15s; }
+    .wave-bar:nth-child(3) { animation-delay: 0.3s; }
+    .wave-bar:nth-child(4) { animation-delay: 0.45s; }
+
+    /* 紧张倒计时脉冲动画 */
+    @keyframes urgentPulse {
+      0%, 100% { transform: scale(1); background-color: #ef4444; }
+      50% { transform: scale(1.08); background-color: #b91c1c; }
+    }
+    .timer-urgent {
+      animation: urgentPulse 0.5s infinite ease-in-out;
+      color: white !important;
+    }
+
+    /* 答案抖动与弹跳 */
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-6px); }
+      40%, 80% { transform: translateX(6px); }
+    }
+    .animate-shake {
+      animation: shake 0.4s ease-in-out;
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.85); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .animate-pop {
+      animation: popIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+
+    /* 自定义滚动条 */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.4);
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #93c5fd;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #60a5fa;
+    }
+  </style>
+</head>
+<body class="p-3 sm:p-5 md:p-6">
+
+  <!-- 全局提示消息框 (替代 alert) -->
+  <div id="toast-container" class="fixed top-4 right-4 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <!-- 顶部导航栏 -->
+  <header class="max-w-7xl mx-auto mb-5 bg-white/90 backdrop-blur-md rounded-3xl p-4 shadow-lg border-2 border-sky-200 flex flex-wrap items-center justify-between gap-3">
+    <div class="flex items-center gap-3">
+      <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-white text-2xl font-black shadow-md">
+        U1
+      </div>
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="px-2.5 py-0.5 bg-sky-100 text-sky-700 text-xs font-extrabold rounded-full">Year 3 English (3A)</span>
+          <span class="px-2.5 py-0.5 bg-emerald-100 text-emerald-700 text-xs font-extrabold rounded-full">Textbook p.5–14</span>
+        </div>
+        <h1 class="text-xl sm:text-2xl font-black text-slate-800 tracking-tight">
+          Unit 1: Welcome! <span class="text-sky-600">闪卡精读 & 听力语法闯关</span>
+        </h1>
+      </div>
+    </div>
+
+    <!-- 右侧控制栏：BGM开关、语速调节、教师设置 -->
+    <div class="flex flex-wrap items-center gap-2 sm:gap-3">
+      <!-- 英语朗读语速切换 -->
+      <div class="flex items-center bg-slate-100 rounded-2xl p-1 border border-slate-200">
+        <span class="text-xs font-bold text-slate-500 px-2"><i class="fa-solid fa-gauge-high mr-1"></i>语速:</span>
+        <button onclick="setSpeechRate(0.75)" id="rate-slow" class="px-2.5 py-1 rounded-xl text-xs font-extrabold transition bg-white text-sky-600 shadow-sm">慢速</button>
+        <button onclick="setSpeechRate(0.95)" id="rate-normal" class="px-2.5 py-1 rounded-xl text-xs font-extrabold transition text-slate-600 hover:text-sky-600">标准</button>
+      </div>
+
+      <!-- 背景音乐开关 -->
+      <button id="bgm-toggle-btn" onclick="toggleBGM()" class="btn-chunky px-4 py-2 rounded-2xl bg-amber-400 hover:bg-amber-300 text-slate-900 font-extrabold text-sm flex items-center gap-2">
+        <i id="bgm-icon" class="fa-solid fa-volume-xmark"></i>
+        <span id="bgm-text">开启背景音乐</span>
+      </button>
+
+      <!-- 教师数据与Google Sheet配置按钮 -->
+      <button onclick="openTeacherModal()" class="btn-chunky px-4 py-2 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold text-sm flex items-center gap-2">
+        <i class="fa-solid fa-table-list"></i>
+        <span class="hidden sm:inline">教师后台 / Google Sheet</span>
+        <span class="sm:hidden">设置</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- 主内容双栏分屏布局：左边 Flashcard，右边 Quiz -->
+  <main class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+
+    <!-- ==================== 左侧面板：FLASHCARDS (闪卡精读区) ==================== -->
+    <section class="lg:col-span-6 bg-white/95 rounded-3xl p-5 sm:p-6 shadow-xl border-4 border-sky-300 flex flex-col justify-between">
+      <div>
+        <!-- 闪卡区标题与总进度 -->
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-2">
+            <span class="w-9 h-9 rounded-xl bg-sky-500 text-white flex items-center justify-center font-black text-lg shadow">
+              <i class="fa-solid fa-layer-group"></i>
+            </span>
+            <div>
+              <h2 class="text-lg sm:text-xl font-black text-slate-800">Step 1: 闪卡精读区 (Flashcards)</h2>
+              <p class="text-xs font-bold text-slate-500">每张卡片需认真学习 <span class="text-rose-500 font-extrabold">5 秒</span> 才能解锁下一张</p>
+            </div>
+          </div>
+          <div class="text-right">
+            <span id="fc-progress-text" class="text-sm font-black text-sky-600 bg-sky-50 px-3 py-1 rounded-full border border-sky-200">
+              1 / 31
+            </span>
+          </div>
+        </div>
+
+        <!-- 进度条 -->
+        <div class="w-full h-3.5 bg-slate-100 rounded-full overflow-hidden mb-4 border border-slate-200 p-0.5">
+          <div id="fc-progress-bar" class="h-full bg-gradient-to-r from-sky-400 to-emerald-400 rounded-full transition-all duration-300" style="width: 3%;"></div>
+        </div>
+
+        <!-- 分类快速筛选标签（仅可查看已解锁的卡片） -->
+        <div class="flex flex-wrap gap-1.5 mb-4" id="fc-category-badges">
+          <span class="text-xs font-extrabold px-2.5 py-1 rounded-lg bg-sky-100 text-sky-700" id="fc-tag-badge">词汇 #1</span>
+          <span class="text-xs font-bold px-2.5 py-1 rounded-lg bg-amber-100 text-amber-800" id="fc-type-badge">核心生词</span>
+          <span id="fc-completed-badge" class="hidden text-xs font-extrabold px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-700">
+            <i class="fa-solid fa-circle-check mr-1"></i>本卡已精读
+          </span>
+        </div>
+
+        <!-- 闪卡主体卡片 -->
+        <div id="flashcard-box" class="relative bg-gradient-to-b from-sky-50 to-white rounded-3xl border-2 border-sky-200 p-5 sm:p-6 shadow-inner min-h-[360px] flex flex-col justify-between transition-all">
+          
+          <!-- 顶部：图标插画 + 发音按钮 -->
+          <div class="flex items-start justify-between gap-3">
+            <div id="fc-illustration" class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-white shadow-md border-2 border-sky-100 flex items-center justify-center text-4xl sm:text-5xl select-none">
+              👧
+            </div>
+            <div class="flex flex-col items-end gap-2">
+              <button onclick="speakCurrentFlashcard()" class="btn-chunky px-4 py-2.5 rounded-2xl bg-sky-500 hover:bg-sky-400 text-white font-extrabold text-sm flex items-center gap-2">
+                <i class="fa-solid fa-volume-high"></i>
+                <span>再听一遍</span>
+              </button>
+              <span id="fc-speaking-indicator" class="hidden text-xs font-bold text-sky-600 flex items-center gap-1">
+                <span class="inline-block w-2 h-2 rounded-full bg-sky-500 animate-ping"></span> 正在朗读...
+              </span>
+            </div>
+          </div>
+
+          <!-- 中部：英文单词 + 华语 + 马来语 -->
+          <div class="my-4 text-center">
+            <h3 id="fc-word" class="text-3xl sm:text-4xl font-black text-slate-900 tracking-wide mb-2">
+              pretty
+            </h3>
+            <div id="fc-grammar-note" class="hidden mb-2 inline-block px-3 py-1 rounded-xl bg-purple-100 text-purple-800 text-xs font-extrabold">
+              词根 / 变化: shell → shells
+            </div>
+            <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mt-1">
+              <span id="fc-chinese" class="px-4 py-1.5 rounded-2xl bg-rose-100 text-rose-800 font-black text-lg sm:text-xl border border-rose-200">
+                漂亮
+              </span>
+              <span id="fc-malay" class="px-4 py-1.5 rounded-2xl bg-amber-100 text-amber-800 font-bold text-base sm:text-lg border border-amber-200 italic">
+                cantik
+              </span>
+            </div>
+          </div>
+
+          <!-- 底部：课本原句 + 难点华语标注 -->
+          <div class="bg-white rounded-2xl p-4 border-2 border-slate-100 shadow-sm">
+            <div class="flex items-center justify-between mb-1.5">
+              <span class="text-xs font-black uppercase tracking-wider text-sky-600">
+                <i class="fa-solid fa-book-open mr-1"></i>课本例句 & 难点提示
+              </span>
+              <button onclick="speakSentenceOnly()" class="text-xs font-extrabold text-sky-600 hover:text-sky-800 bg-sky-50 px-2.5 py-1 rounded-lg">
+                <i class="fa-solid fa-play mr-1"></i>朗读例句
+              </button>
+            </div>
+            <p id="fc-sentence" class="text-base sm:text-lg font-bold text-slate-800 leading-relaxed">
+              She is a <span class="text-sky-600 underline decoration-wavy">pretty</span> and helpful (乐于助人的) person.
+            </p>
+            <p id="fc-sentence-zh" class="text-xs sm:text-sm font-semibold text-slate-500 mt-1.5">
+              她是一个漂亮又乐于助人的人。
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 闪卡底部导航与 5 秒强制计时器 -->
+      <div class="mt-5 flex items-center justify-between gap-3">
+        <button id="fc-prev-btn" onclick="prevFlashcard()" class="btn-chunky px-4 py-3 rounded-2xl bg-slate-200 hover:bg-slate-300 text-slate-700 font-extrabold text-sm flex items-center gap-2">
+          <i class="fa-solid fa-arrow-left"></i>
+          <span>上一张</span>
+        </button>
+
+        <!-- 5秒倒计时状态提示 -->
+        <div id="fc-timer-pill" class="px-4 py-2 rounded-2xl bg-amber-100 border-2 border-amber-300 text-amber-900 font-black text-sm flex items-center gap-2">
+          <i class="fa-solid fa-hourglass-half animate-spin text-amber-600"></i>
+          <span>请精读本卡：<span id="fc-countdown" class="text-rose-600 text-base">5</span> 秒</span>
+        </div>
+
+        <button id="fc-next-btn" onclick="nextFlashcard()" disabled class="btn-chunky px-5 py-3 rounded-2xl bg-emerald-500 hover:bg-emerald-400 text-white font-extrabold text-sm flex items-center gap-2">
+          <span id="fc-next-text">下一张 (5s)</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- ==================== 右侧面板：QUIZ ARENA (双步听力与语法闯关区) ==================== -->
+    <section class="lg:col-span-6 relative bg-white/95 rounded-3xl p-5 sm:p-6 shadow-xl border-4 border-amber-300 min-h-[540px] flex flex-col justify-between overflow-hidden">
+
+      <!-- 锁定遮罩层：未读完所有闪卡前严禁进入测验 -->
+      <div id="quiz-lock-overlay" class="absolute inset-0 z-20 bg-slate-900/85 backdrop-blur-md flex flex-col items-center justify-center p-6 text-center text-white transition-all duration-500">
+        <div class="w-24 h-24 rounded-full bg-amber-400/20 border-4 border-amber-400 flex items-center justify-center mb-4 shadow-lg animate-bounce">
+          <i class="fa-solid fa-lock text-4xl text-amber-400"></i>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-black mb-2 text-amber-300">闯关测验已锁定！</h2>
+        <p class="text-sm sm:text-base text-slate-200 max-w-md mb-5 leading-relaxed">
+          同学，请先在左边完成所有 <span class="font-black text-sky-300">31 张闪卡精读</span>（包含生词、数字、活动与语法规则，每张至少阅读 5 秒），完成全部学习后右侧测验会自动解锁哦！
+        </p>
+        <div class="w-full max-w-xs bg-slate-800 rounded-2xl p-4 border border-slate-700">
+          <div class="flex justify-between text-xs font-extrabold mb-1.5">
+            <span class="text-slate-400">闪卡解锁进度</span>
+            <span id="lock-progress-label" class="text-emerald-400">0 / 31 张完成</span>
+          </div>
+          <div class="w-full h-3 bg-slate-700 rounded-full overflow-hidden">
+            <div id="lock-progress-bar" class="h-full bg-emerald-400 transition-all duration-300" style="width: 0%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1. 测验开始前：学生姓名与班级填写界面 -->
+      <div id="quiz-start-screen" class="my-auto py-4 text-center">
+        <div class="inline-flex items-center justify-center w-20 h-20 rounded-3xl bg-gradient-to-br from-emerald-400 to-teal-500 text-white text-4xl shadow-lg mb-4">
+          <i class="fa-solid fa-trophy"></i>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-800 mb-2">Step 2: 听力与语法大闯关</h2>
+        <p class="text-sm font-bold text-slate-500 mb-6 max-w-md mx-auto">
+          你已完成全部闪卡学习！请输入你的姓名和班级开始答题。系统将把成绩自动记录给老师。
+        </p>
+
+        <div class="max-w-sm mx-auto space-y-4 text-left bg-amber-50/80 p-5 rounded-3xl border-2 border-amber-200 mb-6">
+          <div>
+            <label class="block text-xs font-black text-slate-700 uppercase mb-1">学生英文/华文姓名 (Student Name) *</label>
+            <input type="text" id="student-name" placeholder="例如: Tan Wei Ming / 陈伟明" class="w-full px-4 py-3 rounded-2xl border-2 border-amber-300 focus:border-sky-500 focus:outline-none font-bold text-slate-800 bg-white" />
+          </div>
+          <div>
+            <label class="block text-xs font-black text-slate-700 uppercase mb-1">班级 (Class) *</label>
+            <select id="student-class" class="w-full px-4 py-3 rounded-2xl border-2 border-amber-300 focus:border-sky-500 focus:outline-none font-bold text-slate-800 bg-white">
+              <option value="3M">3M</option>
+              <option value="3K">3K</option>
+              <option value="3B">3B</option>
+              <option value="3J">3J</option>
+              <option value="3H">3H</option>
+              <option value="3P">3P</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- 规则提醒卡片 -->
+        <div class="max-w-md mx-auto bg-sky-50 rounded-2xl p-3.5 border border-sky-200 text-left text-xs font-bold text-sky-900 space-y-1.5 mb-6">
+          <p><i class="fa-solid fa-ear-listen text-sky-600 mr-1.5"></i><strong>规则 1：</strong>每题必须等电脑把完整英文句子朗读完毕后，选项才会解锁！</p>
+          <p><i class="fa-solid fa-stopwatch text-rose-500 mr-1.5"></i><strong>规则 2：</strong>句子读完后开始 <span class="text-rose-600 font-black">20 秒倒计时</span>（最后 5 秒音乐会变紧张哦！）。</p>
+          <p><i class="fa-solid fa-list-check text-emerald-600 mr-1.5"></i><strong>规则 3：</strong>先选出正确的<strong>英文字</strong>填入句子，再选出该词的<strong>华语意思</strong>！</p>
+        </div>
+
+        <button onclick="startQuiz()" class="btn-chunky px-8 py-4 rounded-3xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-white font-black text-lg shadow-lg flex items-center justify-center gap-3 mx-auto">
+          <i class="fa-solid fa-play"></i>
+          <span>开始 20 秒限时闯关！</span>
+        </button>
+      </div>
+
+      <!-- 2. 测验进行中界面 -->
+      <div id="quiz-active-screen" class="hidden flex-col h-full justify-between">
+        <!-- 顶部状态栏：题号、得分、20秒倒计时 -->
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-4">
+            <div class="flex items-center gap-2">
+              <span id="q-number-badge" class="px-3.5 py-1.5 rounded-2xl bg-indigo-600 text-white font-black text-sm">
+                第 1 / 20 题
+              </span>
+              <span id="q-category-badge" class="px-3 py-1.5 rounded-2xl bg-purple-100 text-purple-800 font-extrabold text-xs">
+                词汇填空
+              </span>
+            </div>
+
+            <!-- 20秒倒计时圆环/胶囊 -->
+            <div id="quiz-timer-box" class="px-4 py-1.5 rounded-2xl bg-emerald-100 border-2 border-emerald-400 text-emerald-900 font-black text-base flex items-center gap-2 transition-all">
+              <i class="fa-solid fa-clock"></i>
+              <span id="quiz-timer-text">等待朗读...</span>
+            </div>
+          </div>
+
+          <!-- 朗读状态与重播按钮 -->
+          <div class="bg-gradient-to-r from-sky-50 to-indigo-50 rounded-2xl p-4 sm:p-5 border-2 border-sky-200 mb-4 relative">
+            <div class="flex items-center justify-between mb-2">
+              <span id="audio-lock-status" class="text-xs font-black px-3 py-1 rounded-full bg-amber-200 text-amber-900 flex items-center gap-2">
+                <span class="flex items-end gap-0.5 h-4">
+                  <span class="w-1 bg-amber-700 rounded wave-bar"></span>
+                  <span class="w-1 bg-amber-700 rounded wave-bar"></span>
+                  <span class="w-1 bg-amber-700 rounded wave-bar"></span>
+                </span>
+                正在朗读完整句子，请仔细听（读完后解锁作答）...
+              </span>
+              <button id="q-replay-btn" onclick="replayQuizSentence()" disabled class="px-3 py-1 rounded-xl bg-white border border-sky-300 text-sky-700 font-extrabold text-xs hover:bg-sky-100 disabled:opacity-40">
+                <i class="fa-solid fa-rotate-right mr-1"></i>重听句子
+              </button>
+            </div>
+
+            <!-- 带括号华语注释的挖空英语句子 -->
+            <p id="q-sentence-display" class="text-lg sm:text-xl font-black text-slate-800 leading-relaxed mt-2">
+              She is a <span class="inline-block min-w-[110px] px-3 py-0.5 mx-1 border-b-4 border-dashed border-sky-500 text-center text-sky-600 bg-white rounded-lg">______</span> and helpful (乐于助人的) person.
+            </p>
+          </div>
+
+          <!-- 步骤指示器：第一步选英文 -> 第二步选华语 -->
+          <div class="grid grid-cols-2 gap-2 mb-4">
+            <div id="step1-indicator" class="p-2.5 rounded-2xl border-2 border-sky-500 bg-sky-50 text-sky-900 font-black text-xs sm:text-sm text-center">
+              ① 先选正确的英文字填空
+            </div>
+            <div id="step2-indicator" class="p-2.5 rounded-2xl border-2 border-slate-200 bg-slate-50 text-slate-400 font-black text-xs sm:text-sm text-center">
+              ② 再选该答案的华语意思
+            </div>
+          </div>
+
+          <!-- 选项容器 (读完句子前处于锁定状态) -->
+          <div id="q-options-wrapper" class="relative">
+            <!-- 朗读未完成时的半透明锁层 -->
+            <div id="q-reading-shield" class="absolute inset-0 z-10 bg-white/75 backdrop-blur-[2px] rounded-2xl flex flex-col items-center justify-center text-center p-4 border-2 border-dashed border-amber-400">
+              <i class="fa-solid fa-volume-high text-3xl text-amber-500 animate-bounce mb-2"></i>
+              <p class="font-black text-slate-800 text-sm sm:text-base">请先听完电脑把完整句子读完！</p>
+              <p class="text-xs font-bold text-slate-500">句子读完后，按钮会自动解锁并开始 20 秒计时</p>
+            </div>
+
+            <!-- 选项按钮网格 -->
+            <div id="q-options-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <!-- 动态生成 4 个选项 -->
+            </div>
+          </div>
+        </div>
+
+        <!-- 底部实时得分条 -->
+        <div class="mt-5 pt-3 border-t-2 border-slate-100 flex items-center justify-between text-xs sm:text-sm font-extrabold">
+          <div class="flex items-center gap-3">
+            <span class="text-emerald-600"><i class="fa-solid fa-circle-check mr-1"></i>答对: <span id="live-correct">0</span></span>
+            <span class="text-rose-500"><i class="fa-solid fa-circle-xmark mr-1"></i>答错: <span id="live-wrong">0</span></span>
+          </div>
+          <span class="text-slate-400" id="student-badge-live">学生: ---</span>
+        </div>
+      </div>
+
+      <!-- 3. 测验结束：成绩单 & 自动同步 Google Sheet / Email 通知界面 -->
+      <div id="quiz-result-screen" class="hidden flex-col justify-between h-full animate-pop">
+        <div class="text-center">
+          <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-amber-100 border-4 border-amber-400 text-amber-500 text-4xl mb-3 shadow">
+            <i class="fa-solid fa-crown"></i>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black text-slate-800">闯关完成！太棒了！</h2>
+          <p id="res-student-info" class="text-sm font-extrabold text-sky-600 mt-1">学生：--- | 班级：---</p>
+
+          <!-- 核心数据统计卡片 -->
+          <div class="grid grid-cols-3 gap-3 my-4">
+            <div class="bg-emerald-50 border-2 border-emerald-200 rounded-2xl p-3">
+              <div class="text-xs font-extrabold text-emerald-700">答对题数</div>
+              <div id="res-correct" class="text-2xl sm:text-3xl font-black text-emerald-600">0</div>
+            </div>
+            <div class="bg-rose-50 border-2 border-rose-200 rounded-2xl p-3">
+              <div class="text-xs font-extrabold text-rose-700">答错题数</div>
+              <div id="res-wrong" class="text-2xl sm:text-3xl font-black text-rose-500">0</div>
+            </div>
+            <div class="bg-indigo-50 border-2 border-indigo-200 rounded-2xl p-3">
+              <div class="text-xs font-extrabold text-indigo-700">总得分率</div>
+              <div id="res-score" class="text-2xl sm:text-3xl font-black text-indigo-600">0%</div>
+            </div>
+          </div>
+
+          <!-- 自动上报 Google Sheet & Email 状态提示框 -->
+          <div id="submission-status-box" class="bg-slate-50 border-2 border-slate-200 rounded-2xl p-3.5 text-left mb-4">
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-xs font-black text-slate-700 flex items-center gap-1.5">
+                <i class="fa-solid fa-paper-plane text-indigo-600"></i>
+                成绩汇报状态 (g-88545190@moe-dl.edu.my)
+              </span>
+              <span id="sync-badge" class="text-xs font-extrabold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-800">准备发送...</span>
+            </div>
+            <p id="sync-message" class="text-xs font-semibold text-slate-600">
+              正在将成绩汇总至老师的 Google Sheet 并触发邮件通知...
+            </p>
+          </div>
+
+          <!-- 错题回顾列表 -->
+          <div class="text-left mb-4">
+            <h4 class="text-xs font-black text-slate-600 uppercase mb-1.5">答题详情回顾：</h4>
+            <div id="res-review-list" class="max-h-36 overflow-y-auto space-y-1.5 pr-1 text-xs">
+              <!-- 动态生成每题对错 -->
+            </div>
+          </div>
+        </div>
+
+        <!-- 底部操作按钮：发送邮件备份 / 复制一行表格数据 / 再玩一次 -->
+        <div class="space-y-2">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            <a id="mailto-fallback-btn" href="#" class="btn-chunky py-2.5 px-4 rounded-2xl bg-sky-600 hover:bg-sky-500 text-white font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2">
+              <i class="fa-solid fa-envelope"></i>
+              <span>直接发 Email 通知老师</span>
+            </a>
+            <button onclick="copySheetRow()" class="btn-chunky py-2.5 px-4 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2">
+              <i class="fa-solid fa-copy"></i>
+              <span>复制 Google Sheet 表格行</span>
+            </button>
+          </div>
+          <button onclick="restartQuizOnly()" class="w-full py-2.5 rounded-2xl bg-slate-200 hover:bg-slate-300 text-slate-700 font-extrabold text-xs sm:text-sm">
+            <i class="fa-solid fa-rotate-left mr-1"></i>重新挑战一次测验
+          </button>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- ==================== 教师后台配置弹窗 (Google Sheet + 自动发邮件脚本) ==================== -->
+  <div id="teacher-modal" class="fixed inset-0 z-50 hidden bg-slate-900/75 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 shadow-2xl border-4 border-indigo-300">
+      <div class="flex items-center justify-between pb-3 border-b-2 border-slate-100 mb-4">
+        <div class="flex items-center gap-2.5">
+          <div class="w-10 h-10 rounded-2xl bg-indigo-600 text-white flex items-center justify-center text-lg">
+            <i class="fa-solid fa-chalkboard-user"></i>
+          </div>
+          <div>
+            <h3 class="text-lg font-black text-slate-800">教师数据中心 & Google Sheet 自动化设置</h3>
+            <p class="text-xs font-bold text-slate-500">接收邮箱：<span class="text-indigo-600">g-88545190@moe-dl.edu.my</span></p>
+          </div>
+        </div>
+        <button onclick="closeTeacherModal()" class="w-9 h-9 rounded-full bg-slate-100 hover:bg-rose-100 text-slate-600 hover:text-rose-600 font-black">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- 步骤 1：粘贴 Google Apps Script Web App URL -->
+      <div class="bg-indigo-50/70 rounded-2xl p-4 border-2 border-indigo-200 mb-4">
+        <label class="block text-sm font-black text-indigo-950 mb-1">
+          1. 粘贴您的 Google Apps Script Web App 网址（自动汇总到同一张 Google Sheet + 自动发 Email）：
+        </label>
+        <div class="flex flex-col sm:flex-row gap-2">
+          <input type="url" id="webhook-url-input" placeholder="https://script.google.com/macros/s/AKfycb.../exec" class="flex-1 px-3.5 py-2.5 rounded-xl border-2 border-indigo-300 text-xs sm:text-sm font-bold focus:outline-none focus:border-indigo-600" />
+          <button onclick="saveWebhookUrl()" class="btn-chunky px-4 py-2.5 rounded-xl bg-indigo-600 text-white font-extrabold text-xs sm:text-sm whitespace-nowrap">
+            保存网址
+          </button>
+        </div>
+        <p class="text-xs text-slate-600 mt-1.5">
+          保存后，全班每位学生完成测验时，数据会自动写入同一张 Google Sheet 表格，同时系统会自动发送一封包含<strong>答对题数、答错题数、得分率</strong>的通知邮件到 <code class="bg-white px-1 rounded text-indigo-700">g-88545190@moe-dl.edu.my</code>。
+        </p>
+      </div>
+
+      <!-- 步骤 2：一键复制 Google Apps Script 代码 -->
+      <div class="bg-slate-50 rounded-2xl p-4 border-2 border-slate-200 mb-4">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-sm font-black text-slate-800">2. 一键复制 Google Sheet 后台接收代码 (Apps Script)：</span>
+          <button onclick="copyAppsScriptCode()" class="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs flex items-center gap-1.5">
+            <i class="fa-solid fa-copy"></i> 复制代码
+          </button>
+        </div>
+        <ol class="text-xs text-slate-600 space-y-1 mb-2 list-decimal list-inside font-semibold">
+          <li>打开您的 Google Drive，新建一张 <strong>Google Sheet</strong>（例如命名为 <code>Year 3 Unit 1 成绩总表</code>）。</li>
+          <li>点击上方菜单 <strong>扩展程序 (Extensions) → Apps Script</strong>，删除原有代码并粘贴下方代码。</li>
+          <li>点击右上角 <strong>部署 (Deploy) → 新建部署 (New deployment)</strong>，类型选 <strong>Web 应用 (Web app)</strong>，执行身份选 <strong>我 (Me)</strong>，谁可以访问选 <strong>所有人 (Anyone)</strong>，复制生成的 URL 贴到上方输入框即可！</li>
+        </ol>
+        <textarea id="apps-script-code" readonly rows="8" class="w-full p-3 rounded-xl bg-slate-900 text-emerald-300 font-mono text-xs focus:outline-none">function doPost(e) {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  if (sheet.getLastRow() === 0) {
+    sheet.appendRow(["提交时间", "学生姓名", "班级", "总题数", "答对题数", "答错题数", "得分率", "错题记录"]);
+  }
+  var data = JSON.parse(e.postData.contents);
+  sheet.appendRow([
+    new Date().toLocaleString("zh-MY", {timeZone: "Asia/Kuala_Lumpur"}),
+    data.name,
+    data.className,
+    data.total,
+    data.correct,
+    data.wrong,
+    data.score + "%",
+    data.wrongDetails
+  ]);
+  
+  // 自动发送通知邮件到老师邮箱
+  var teacherEmail = "g-88545190@moe-dl.edu.my";
+  var subject = "【Year 3 English 成绩通知】" + data.className + " - " + data.name + " (" + data.score + "%)";
+  var body = "老师您好，\n\n学生已完成 Year 3 Unit 1: Welcome! 闪卡与语法测验：\n"
+           + "• 学生姓名：" + data.name + "\n"
+           + "• 班级：" + data.className + "\n"
+           + "• 总题数：" + data.total + " 题\n"
+           + "• 答对题数：" + data.correct + " 题\n"
+           + "• 答错题数：" + data.wrong + " 题\n"
+           + "• 得分率：" + data.score + "%\n"
+           + "• 错题详情：" + (data.wrongDetails || "全对！无错题") + "\n\n"
+           + "所有数据已自动汇总至您的 Google Sheet 表格中。";
+  MailApp.sendEmail(teacherEmail, subject, body);
+  
+  return ContentService.createTextOutput(JSON.stringify({"status": "success"}))
+    .setMimeType(ContentService.MimeType.JSON);
+}</textarea>
+      </div>
+
+      <!-- 本地已收集的本机记录汇总表 -->
+      <div class="bg-amber-50/70 rounded-2xl p-4 border-2 border-amber-200">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-sm font-black text-amber-950">3. 本机设备已记录的学生成绩缓存 (<span id="local-record-count">0</span> 条)：</span>
+          <button onclick="exportAllLocalCSV()" class="px-3 py-1.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-900 font-extrabold text-xs">
+            <i class="fa-solid fa-file-csv mr-1"></i>导出汇总 CSV
+          </button>
+        </div>
+        <div id="local-records-preview" class="text-xs text-slate-600 max-h-28 overflow-y-auto bg-white p-2.5 rounded-xl border border-amber-200">
+          暂无学生提交记录。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 核心数据与游戏逻辑脚本 ==================== -->
+  <script>
+    // =========================================================================
+    // 1. 完整课本数据 (涵盖图片 1-5 页全部 26 项词汇、数字、活动及核心语法卡)
+    // =========================================================================
+    const FLASHCARDS_DATA = [
+      // 第 1 页：外貌与发型 (Items 1 - 6)
+      {
+        id: 1, tag: "词汇 #1", type: "形容词 Adjective", icon: "👧",
+        word: "pretty", chinese: "漂亮", malay: "cantik",
+        sentenceHTML: "She is a <span class='text-sky-600 underline decoration-wavy'>pretty</span> and helpful (乐于助人的) person (人).",
+        sentencePlain: "She is a pretty and helpful person.",
+        sentenceZh: "她是一个漂亮又乐于助人的人。"
+      },
+      {
+        id: 2, tag: "词汇 #2", type: "形容词 Adjective", icon: "🧸",
+        word: "ugly", chinese: "丑陋", malay: "hodoh",
+        sentenceHTML: "The first (第一个) doll (玩偶) that I had looked <span class='text-sky-600 underline decoration-wavy'>ugly</span>.",
+        sentencePlain: "The first doll that I had looked ugly.",
+        sentenceZh: "我拥有的第一个洋娃娃看起来很丑陋。"
+      },
+      {
+        id: 3, tag: "词汇 #3", type: "外貌特征", icon: "👩",
+        word: "straight hair", chinese: "直发", malay: "rambut lurus",
+        sentenceHTML: "The woman (女士) sitting there (坐在那里) with <span class='text-sky-600 underline decoration-wavy'>straight hair</span> is my mother.",
+        sentencePlain: "The woman sitting there with straight hair is my mother.",
+        sentenceZh: "坐在那里留着直发的女士是我的妈妈。"
+      },
+      {
+        id: 4, tag: "词汇 #4", type: "外貌特征", icon: "👦",
+        word: "curly hair", chinese: "鬈发", malay: "rambut keriting",
+        sentenceHTML: "My brother has big round (圆圆的) eyes and <span class='text-sky-600 underline decoration-wavy'>curly hair</span>.",
+        sentencePlain: "My brother has big round eyes and curly hair.",
+        sentenceZh: "我的弟弟有大大的圆眼睛和鬈发。"
+      },
+      {
+        id: 5, tag: "词汇 #5", type: "外貌特征", icon: "👨‍👩‍👦",
+        word: "black hair", chinese: "黑发", malay: "rambut hitam",
+        sentenceHTML: "Our family (家庭) has <span class='text-sky-600 underline decoration-wavy'>black hair</span>.",
+        sentencePlain: "Our family has black hair.",
+        sentenceZh: "我们一家人都有黑发。"
+      },
+      {
+        id: 6, tag: "词汇 #6", type: "外貌特征", icon: "👱‍♀️",
+        word: "blonde hair", chinese: "金发", malay: "rambut perang",
+        sentenceHTML: "The American (美国的) woman has <span class=" + "'text-sky-600 underline decoration-wavy'>blonde hair</span>.",
+        sentencePlain: "The American woman has blonde hair.",
+        sentenceZh: "那位美国女士有一头金发。"
+      },
+
+      // 第 2 页：数字 Numbers 10 - 100 (Item 7)
+      {
+        id: 7, tag: "数字 #7a", type: "数字 Numbers", icon: "🔟",
+        word: "ten / twenty / thirty", chinese: "十 / 二十 / 三十", malay: "sepuluh / dua puluh / tiga puluh",
+        grammarNote: "10 (ten) • 20 (twenty) • 30 (thirty)",
+        sentenceHTML: "There are <span class='text-sky-600 underline decoration-wavy'>thirty</span> students (学生) in my classroom (课室).",
+        sentencePlain: "There are thirty students in my classroom.",
+        sentenceZh: "我的课室里有三十位学生。"
+      },
+      {
+        id: 8, tag: "数字 #7b", type: "数字 Numbers", icon: "🔢",
+        word: "forty / fifty / sixty", chinese: "四十 / 五十 / 六十", malay: "empat puluh / lima puluh / enam puluh",
+        grammarNote: "注意拼写：40 是 forty (没有 u！) • 50 fifty • 60 sixty",
+        sentenceHTML: "My father is <span class='text-sky-600 underline decoration-wavy'>forty</span> years old (岁).",
+        sentencePlain: "My father is forty years old.",
+        sentenceZh: "我的爸爸四十岁了。"
+      },
+      {
+        id: 9, tag: "数字 #7c", type: "数字 Numbers", icon: "💯",
+        word: "seventy / eighty / ninety / one hundred", chinese: "七十 / 八十 / 九十 / 一百", malay: "tujuh puluh / lapan puluh / sembilan puluh / seratus",
+        grammarNote: "70 seventy • 80 eighty • 90 ninety • 100 one hundred",
+        sentenceHTML: "I have <span class='text-sky-600 underline decoration-wavy'>one hundred</span> storybooks (故事书).",
+        sentencePlain: "I have one hundred storybooks.",
+        sentenceZh: "我有一百本故事书。"
+      },
+
+      // 第 3 页：Items 8 - 15 (含复数与情态动词 can / cannot)
+      {
+        id: 10, tag: "词汇 #8", type: "名词复数 Plural", icon: "🐚",
+        word: "shells", chinese: "贝壳", malay: "kulit kerang",
+        grammarNote: "语法提示：单数 shell → 复数 shells (加 s)",
+        sentenceHTML: "I like to collect (收集) <span class='text-sky-600 underline decoration-wavy'>shells</span> every time I go to the beach (海滩).",
+        sentencePlain: "I like to collect shells every time I go to the beach.",
+        sentenceZh: "每次我去海滩时，我都喜欢收集贝壳。"
+      },
+      {
+        id: 11, tag: "语法 #9", type: "核心语法 Grammar", icon: "✨",
+        word: "have got", chinese: "有", malay: "mempunyai",
+        grammarNote: "语法规则：I / You / We / They / 复数名词 + have got (有)",
+        sentenceHTML: "The girls (女孩们) <span class='text-sky-600 underline decoration-wavy'>have got</span> beautiful (美丽的) hair.",
+        sentencePlain: "The girls have got beautiful hair.",
+        sentenceZh: "女孩们有着美丽的头发。"
+      },
+      {
+        id: 12, tag: "词汇 #10", type: "名词复数 Plural", icon: "🪆",
+        word: "dolls", chinese: "玩偶；洋娃娃", malay: "anak patung",
+        grammarNote: "语法提示：单数 doll → 复数 dolls (加 s)",
+        sentenceHTML: "She likes to collect (收集) <span class='text-sky-600 underline decoration-wavy'>dolls</span> from around the world (世界各地).",
+        sentencePlain: "She likes to collect dolls from around the world.",
+        sentenceZh: "她喜欢收集来自世界各地的洋娃娃。"
+      },
+      {
+        id: 13, tag: "词汇 #11", type: "名词词组", icon: "🧩",
+        word: "jigsaw puzzle", chinese: "拼图游戏", malay: "susun suai gambar",
+        sentenceHTML: "I enjoy (享受/喜欢) doing <span class='text-sky-600 underline decoration-wavy'>jigsaw puzzle</span> with my father every weekend (周末).",
+        sentencePlain: "I enjoy doing jigsaw puzzle with my father every weekend.",
+        sentenceZh: "每个周末我都喜欢和爸爸一起玩拼图游戏。"
+      },
+      {
+        id: 14, tag: "词汇 #12", type: "形容词 Adjective", icon: "❤️",
+        word: "favourite", chinese: "最爱的", malay: "kegemaran",
+        sentenceHTML: "My <span class='text-sky-600 underline decoration-wavy'>favourite</span> toy (玩具) is my toy car that my brother bought (买) for me.",
+        sentencePlain: "My favourite toy is my toy car that my brother bought for me.",
+        sentenceZh: "我最爱的玩具是哥哥买给我的玩具车。"
+      },
+      {
+        id: 15, tag: "词汇 #13", type: "副词 Adverb", icon: "👍",
+        word: "very well", chinese: "很好", malay: "sangat baik",
+        sentenceHTML: "My mother can cook (煮饭) <span class='text-sky-600 underline decoration-wavy'>very well</span>.",
+        sentencePlain: "My mother can cook very well.",
+        sentenceZh: "我的妈妈煮饭煮得很好。"
+      },
+      {
+        id: 16, tag: "语法 #14", type: "情态动词 Grammar", icon: "🏸",
+        word: "can", chinese: "能；会", malay: "boleh",
+        grammarNote: "语法规则：can + 动词原形 (表示有能力做某事)",
+        sentenceHTML: "She <span class='text-sky-600 underline decoration-wavy'>can</span> play badminton (打羽毛球).",
+        sentencePlain: "She can play badminton.",
+        sentenceZh: "她会打羽毛球。"
+      },
+      {
+        id: 17, tag: "语法 #15", type: "情态动词 Grammar", icon: "🎸",
+        word: "cannot", chinese: "不能；不会", malay: "tidak boleh",
+        grammarNote: "语法规则：cannot (can't) + 动词原形 (表示不会做某事)",
+        sentenceHTML: "He <span class='text-sky-600 underline decoration-wavy'>cannot</span> play the guitar (弹吉他).",
+        sentencePlain: "He cannot play the guitar.",
+        sentenceZh: "他不会弹吉他。"
+      },
+
+      // 第 4 页：Item 16 副词 beautifully & Item 17 Activities
+      {
+        id: 18, tag: "语法 #16", type: "副词语法 Grammar", icon: "🎨",
+        word: "beautifully", chinese: "漂亮地；优美地", malay: "dengan cantik",
+        grammarNote: "语法规则：形容词 beautiful + ly → 副词 beautifully (用来修饰动词 paint)",
+        sentenceHTML: "She can paint (画画/油漆) <span class='text-sky-600 underline decoration-wavy'>beautifully</span>.",
+        sentencePlain: "She can paint beautifully.",
+        sentenceZh: "她能画得很漂亮。"
+      },
+      {
+        id: 19, tag: "活动 #17a", type: "动词 Activities", icon: "🎤",
+        word: "sing", chinese: "歌唱", malay: "menyanyi",
+        sentenceHTML: "Mei Ling can <span class='text-sky-600 underline decoration-wavy'>sing</span> English songs (英文歌) very well.",
+        sentencePlain: "Mei Ling can sing English songs very well.",
+        sentenceZh: "美玲唱英文歌唱得很好。"
+      },
+      {
+        id: 20, tag: "活动 #17b", type: "运动 Activities", icon: "🥋",
+        word: "karate", chinese: "空手道", malay: "karate",
+        grammarNote: "搭配动词：do karate (练空手道)",
+        sentenceHTML: "Ali can do <span class='text-sky-600 underline decoration-wavy'>karate</span> after school (放学后).",
+        sentencePlain: "Ali can do karate after school.",
+        sentenceZh: "阿里放学后会练空手道。"
+      },
+      {
+        id: 21, tag: "活动 #17c", type: "动词 Activities", icon: "💃",
+        word: "dance", chinese: "跳舞", malay: "menari",
+        sentenceHTML: "The children (孩子们) like to <span class='text-sky-600 underline decoration-wavy'>dance</span> together (一起).",
+        sentencePlain: "The children like to dance together.",
+        sentenceZh: "孩子们喜欢一起跳舞。"
+      },
+      {
+        id: 22, tag: "活动 #17d", type: "动词 Activities", icon: "🤿",
+        word: "dive", chinese: "潜水", malay: "menyelam",
+        sentenceHTML: "He can <span class='text-sky-600 underline decoration-wavy'>dive</span> into the swimming pool (游泳池).",
+        sentencePlain: "He can dive into the swimming pool.",
+        sentenceZh: "他能潜入游泳池里。"
+      },
+      {
+        id: 23, tag: "活动 #17e", type: "动词 Activities", icon: "🏊",
+        word: "swim", chinese: "游泳", malay: "berenang",
+        sentenceHTML: "I can <span class='text-sky-600 underline decoration-wavy'>swim</span> fast (快地) in the pool.",
+        sentencePlain: "I can swim fast in the pool.",
+        sentenceZh: "我能在泳池里游得很快。"
+      },
+      {
+        id: 24, tag: "活动 #17f", type: "动词 Activities", icon: "🖌️",
+        word: "paint", chinese: "油漆；画画", malay: "mengecat",
+        sentenceHTML: "They <span class='text-sky-600 underline decoration-wavy'>paint</span> the wall (墙壁) blue.",
+        sentencePlain: "They paint the wall blue.",
+        sentenceZh: "他们把墙壁油漆成蓝色。"
+      },
+      {
+        id: 25, tag: "活动 #17g", type: "球类 Activities", icon: "⚽",
+        word: "football / basketball", chinese: "足球 / 篮球", malay: "bola sepak / bola keranjang",
+        sentenceHTML: "The boys (男孩们) play <span class='text-sky-600 underline decoration-wavy'>football</span> and basketball on the field (草场).",
+        sentencePlain: "The boys play football and basketball on the field.",
+        sentenceZh: "男孩们在草场上踢足球和打篮球。"
+      },
+
+      // 第 5 页：Items 18 - 26 (时间表达 & 动词时态变化)
+      {
+        id: 26, tag: "词汇 #18", type: "名词复数 Plural", icon: "👫",
+        word: "friends", chinese: "朋友", malay: "kawan",
+        grammarNote: "语法提示：单数 friend → 复数 friends",
+        sentenceHTML: "I always (总是) play with my <span class='text-sky-600 underline decoration-wavy'>friends</span> at the park (公园).",
+        sentencePlain: "I always play with my friends at the park.",
+        sentenceZh: "我总是和我的朋友们在公园里玩。"
+      },
+      {
+        id: 27, tag: "词汇 #19-20", type: "时间表达 Time", icon: "🕞",
+        word: "half past", chinese: "……点半（时间）", malay: "setengah (masa)",
+        grammarNote: "It is time (是时候了) • half past three = 3:30 (三点半)",
+        sentenceHTML: "It is <span class='text-sky-600 underline decoration-wavy'>half past</span> three in the afternoon (下午).",
+        sentencePlain: "It is half past three in the afternoon.",
+        sentenceZh: "现在是下午三点半。"
+      },
+      {
+        id: 28, tag: "词汇 #21-22", type: "时间与家庭", icon: "⏰",
+        word: "o'clock / family", chinese: "……点钟 / 家庭", malay: "pukul / keluarga",
+        sentenceHTML: "I wake up (醒来) at 6 <span class='text-sky-600 underline decoration-wavy'>o'clock</span> in the morning, and my <span class='text-sky-600 underline decoration-wavy'>family</span> has dinner at 7:00 p.m.",
+        sentencePlain: "I wake up at 6 o'clock in the morning, and my family has dinner at 7 p.m.",
+        sentenceZh: "我早上六点钟醒来，我的家人晚上七点吃晚餐。"
+      },
+      {
+        id: 29, tag: "词汇 #23 & #25", type: "形容词与名词", icon: "📏",
+        word: "long / lesson", chinese: "长的 / 课", malay: "panjang / pelajaran",
+        sentenceHTML: "I have a <span class='text-sky-600 underline decoration-wavy'>long</span> plastic ruler (塑料尺), and I enjoyed yesterday's (昨天的) <span class='text-sky-600 underline decoration-wavy'>lesson</span> about plants (植物).",
+        sentencePlain: "I have a long plastic ruler, and I enjoyed yesterday's lesson about plants.",
+        sentenceZh: "我有一把长塑料尺，而且我很喜欢昨天关于植物的课。"
+      },
+      {
+        id: 30, tag: "语法 #24", type: "动词时态 Grammar", icon: "🧍",
+        word: "stand up", chinese: "站起来", malay: "berdiri",
+        grammarNote: "动词四态：stand (原形) • stands (三单) • standing (进行) • stood (过去式)",
+        sentenceHTML: "We have to (必须) <span class='text-sky-600 underline decoration-wavy'>stand up</span> when we sing the National anthem (国歌).",
+        sentencePlain: "We have to stand up when we sing the National anthem.",
+        sentenceZh: "当我们唱国歌时，我们必须站起来。"
+      },
+      {
+        id: 31, tag: "语法 #26", type: "动词时态 Grammar", icon: "🔭",
+        word: "see", chinese: "看；看见", malay: "melihat",
+        grammarNote: "动词四态：see (原形) • sees (三单) • seeing (进行) • saw (过去式)",
+        sentenceHTML: "I use (使用) my eyes to <span class='text-sky-600 underline decoration-wavy'>see</span>.",
+        sentencePlain: "I use my eyes to see.",
+        sentenceZh: "我用我的眼睛来看。"
+      }
+    ];
+
+    // =========================================================================
+    // 2. 测验题库 (覆盖词汇 + 数字 + 活动 + 语法规则，难点单词均带华语括号标注)
+    // =========================================================================
+    const QUIZ_QUESTIONS = [
+      {
+        category: "词汇填空 #1",
+        sentenceDisplay: "She is a ______ and helpful (乐于助人的) person (人).",
+        sentenceSpeak: "She is a pretty and helpful person.",
+        enOptions: ["pretty", "ugly", "straight", "curly"],
+        enAnswer: "pretty",
+        zhOptions: ["漂亮", "丑陋", "直发", "贝壳"],
+        zhAnswer: "漂亮"
+      },
+      {
+        category: "词汇填空 #2",
+        sentenceDisplay: "The first (第一个) doll (玩偶) that I had looked ______.",
+        sentenceSpeak: "The first doll that I had looked ugly.",
+        enOptions: ["ugly", "pretty", "favourite", "long"],
+        enAnswer: "ugly",
+        zhOptions: ["丑陋", "漂亮", "最爱的", "长的"],
+        zhAnswer: "丑陋"
+      },
+      {
+        category: "词汇填空 #3",
+        sentenceDisplay: "The woman (女士) sitting there (坐在那里) with ______ is my mother.",
+        sentenceSpeak: "The woman sitting there with straight hair is my mother.",
+        enOptions: ["straight hair", "curly hair", "blonde hair", "black hair"],
+        enAnswer: "straight hair",
+        zhOptions: ["直发", "鬈发", "金发", "黑发"],
+        zhAnswer: "直发"
+      },
+      {
+        category: "词汇填空 #4",
+        sentenceDisplay: "My brother has big round (圆圆的) eyes and ______.",
+        sentenceSpeak: "My brother has big round eyes and curly hair.",
+        enOptions: ["curly hair", "straight hair", "blonde hair", "jigsaw puzzle"],
+        enAnswer: "curly hair",
+        zhOptions: ["鬈发", "直发", "金发", "拼图游戏"],
+        zhAnswer: "鬈发"
+      },
+      {
+        category: "词汇填空 #6",
+        sentenceDisplay: "The American (美国的) woman has ______.",
+        sentenceSpeak: "The American woman has blonde hair.",
+        enOptions: ["blonde hair", "black hair", "curly hair", "straight hair"],
+        enAnswer: "blonde hair",
+        zhOptions: ["金发", "黑发", "鬈发", "直发"],
+        zhAnswer: "金发"
+      },
+      {
+        category: "数字拼写 #7",
+        sentenceDisplay: "My father is ______ (40) years old (岁).",
+        sentenceSpeak: "My father is forty years old.",
+        enOptions: ["forty", "fourteen", "fifty", "thirty"],
+        enAnswer: "forty",
+        zhOptions: ["四十", "十四", "五十", "三十"],
+        zhAnswer: "四十"
+      },
+      {
+        category: "数字拼写 #7",
+        sentenceDisplay: "I have ______ (100) storybooks (故事书).",
+        sentenceSpeak: "I have one hundred storybooks.",
+        enOptions: ["one hundred", "ninety", "eighty", "seventy"],
+        enAnswer: "one hundred",
+        zhOptions: ["一百", "九十", "八十", "七十"],
+        zhAnswer: "一百"
+      },
+      {
+        category: "名词复数语法 #8",
+        sentenceDisplay: "I like to collect (收集) ______ every time I go to the beach (海滩).",
+        sentenceSpeak: "I like to collect shells every time I go to the beach.",
+        enOptions: ["shells", "dolls", "friends", "lessons"],
+        enAnswer: "shells",
+        zhOptions: ["贝壳", "洋娃娃", "朋友", "课"],
+        zhAnswer: "贝壳"
+      },
+      {
+        category: "核心语法 #9 (have got)",
+        sentenceDisplay: "The girls (女孩们) ______ beautiful (美丽的) hair.",
+        sentenceSpeak: "The girls have got beautiful hair.",
+        enOptions: ["have got", "has got", "cannot", "stand up"],
+        enAnswer: "have got",
+        zhOptions: ["有", "不能", "站起来", "看见"],
+        zhAnswer: "有"
+      },
+      {
+        category: "词汇填空 #10",
+        sentenceDisplay: "She likes to collect (收集) ______ from around the world (世界各地).",
+        sentenceSpeak: "She likes to collect dolls from around the world.",
+        enOptions: ["dolls", "shells", "friends", "football"],
+        enAnswer: "dolls",
+        zhOptions: ["玩偶；洋娃娃", "贝壳", "朋友", "足球"],
+        zhAnswer: "玩偶；洋娃娃"
+      },
+      {
+        category: "词汇填空 #11",
+        sentenceDisplay: "I enjoy (喜欢) doing ______ with my father every weekend (周末).",
+        sentenceSpeak: "I enjoy doing jigsaw puzzle with my father every weekend.",
+        enOptions: ["jigsaw puzzle", "karate", "basketball", "homework"],
+        enAnswer: "jigsaw puzzle",
+        zhOptions: ["拼图游戏", "空手道", "篮球", "功课"],
+        zhAnswer: "拼图游戏"
+      },
+      {
+        category: "词汇填空 #12",
+        sentenceDisplay: "My ______ toy (玩具) is my toy car that my brother bought (买) for me.",
+        sentenceSpeak: "My favourite toy is my toy car that my brother bought for me.",
+        enOptions: ["favourite", "ugly", "long", "pretty"],
+        enAnswer: "favourite",
+        zhOptions: ["最爱的", "丑陋的", "长的", "漂亮的"],
+        zhAnswer: "最爱的"
+      },
+      {
+        category: "情态动词语法 #14",
+        sentenceDisplay: "She ______ play badminton (打羽毛球).",
+        sentenceSpeak: "She can play badminton.",
+        enOptions: ["can", "cannot", "have got", "stood"],
+        enAnswer: "can",
+        zhOptions: ["能；会", "不能", "有", "站起来"],
+        zhAnswer: "能；会"
+      },
+      {
+        category: "情态动词语法 #15",
+        sentenceDisplay: "He ______ play the guitar (弹吉他) because he never (从未) learned it.",
+        sentenceSpeak: "He cannot play the guitar because he never learned it.",
+        enOptions: ["cannot", "can", "very well", "see"],
+        enAnswer: "cannot",
+        zhOptions: ["不能；不会", "能；会", "很好", "看"],
+        zhAnswer: "不能；不会"
+      },
+      {
+        category: "副词语法 #16",
+        sentenceDisplay: "She can paint (画画) ______.",
+        sentenceSpeak: "She can paint beautifully.",
+        enOptions: ["beautifully", "beautiful", "pretty", "ugly"],
+        enAnswer: "beautifully",
+        zhOptions: ["漂亮地；优美地", "丑陋地", "很慢地", "大声地"],
+        zhAnswer: "漂亮地；优美地"
+      },
+      {
+        category: "活动词汇 #17",
+        sentenceDisplay: "He can ______ into the swimming pool (游泳池).",
+        sentenceSpeak: "He can dive into the swimming pool.",
+        enOptions: ["dive", "paint", "sing", "karate"],
+        enAnswer: "dive",
+        zhOptions: ["潜水", "油漆", "歌唱", "空手道"],
+        zhAnswer: "潜水"
+      },
+      {
+        category: "时间表达 #20",
+        sentenceDisplay: "It is ______ three (3:30) in the afternoon (下午).",
+        sentenceSpeak: "It is half past three in the afternoon.",
+        enOptions: ["half past", "o'clock", "time", "lesson"],
+        enAnswer: "half past",
+        zhOptions: ["……点半", "……点钟", "时间", "课"],
+        zhAnswer: "……点半"
+      },
+      {
+        category: "词汇填空 #23",
+        sentenceDisplay: "I have a ______ plastic ruler (塑料尺).",
+        sentenceSpeak: "I have a long plastic ruler.",
+        enOptions: ["long", "pretty", "ugly", "favourite"],
+        enAnswer: "long",
+        zhOptions: ["长的", "漂亮的", "丑陋的", "最爱的"],
+        zhAnswer: "长的"
+      },
+      {
+        category: "动词语法 #24",
+        sentenceDisplay: "We have to (必须) ______ when we sing the National anthem (国歌).",
+        sentenceSpeak: "We have to stand up when we sing the National anthem.",
+        enOptions: ["stand up", "stood", "standing", "dive"],
+        enAnswer: "stand up",
+        zhOptions: ["站起来", "潜水", "跳舞", "游泳"],
+        zhAnswer: "站起来"
+      },
+      {
+        category: "动词语法 #26",
+        sentenceDisplay: "I use (使用) my eyes to ______.",
+        sentenceSpeak: "I use my eyes to see.",
+        enOptions: ["see", "saw", "seeing", "sing"],
+        enAnswer: "see",
+        zhOptions: ["看；看见", "歌唱", "游泳", "油漆"],
+        zhAnswer: "看；看见"
+      }
+    ];
+
+    // =========================================================================
+    // 3. 全局状态管理
+    // =========================================================================
+    let currentCardIndex = 0;
+    let completedCards = new Set(); // 记录已满 5 秒精读的卡片索引
+    let cardTimerInterval = null;
+    let cardSecondsLeft = 5;
+    let speechRate = 0.75; // 默认偏慢清晰，适合三年级小学生
+
+    // 测验状态
+    let quizQuestionsShuffled = [];
+    let currentQIndex = 0;
+    let quizStep = 1; // 1 = 选英文填空, 2 = 选华语意思
+    let quizTimerInterval = null;
+    let quizSecondsLeft = 20;
+    let isSentenceReading = false;
+    let correctCount = 0;
+    let wrongCount = 0;
+    let reviewRecords = [];
+    let studentInfo = { name: "", className: "" };
+
+    // 教师配置
+    const TEACHER_EMAIL = "g-88545190@moe-dl.edu.my";
+    const STORAGE_WEBHOOK_KEY = "y3_u1_google_sheet_webhook";
+    const STORAGE_RECORDS_KEY = "y3_u1_student_records";
+
+    // =========================================================================
+    // 4. Web Audio API 动态背景音乐 & 紧张模式音效引擎
+    // =========================================================================
+    let audioCtx = null;
+    let bgmPlaying = false;
+    let bgmUrgentMode = false;
+    let bgmLoopTimer = null;
+    let bgmNoteIndex = 0;
+
+    // 轻快欢快的旋律音符 (C大调儿童冒险风)
+    const NORMAL_MELODY = [
+      523.25, 659.25, 783.99, 659.25, // C5 E5 G5 E5
+      587.33, 698.46, 880.00, 698.46, // D5 F5 A5 F5
+      659.25, 783.99, 1046.50, 783.99,// E5 G5 C6 G5
+      587.33, 493.88, 523.25, 0       // D5 B4 C5 rest
+    ];
+
+    // 倒计时 <= 5秒时的紧张心跳加速音符
+    const URGENT_MELODY = [
+      440.00, 466.16, 440.00, 466.16, // A4 Bb4 紧张半音颤动
+      523.25, 554.37, 523.25, 554.37  // C5 C#5 紧迫感
+    ];
+
+    function initAudioContext() {
+      if (!audioCtx) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        audioCtx = new AudioContext();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+    }
+
+    function toggleBGM() {
+      initAudioContext();
+      bgmPlaying = !bgmPlaying;
+      const btn = document.getElementById('bgm-toggle-btn');
+      const icon = document.getElementById('bgm-icon');
+      const text = document.getElementById('bgm-text');
+
+      if (bgmPlaying) {
+        icon.className = "fa-solid fa-music fa-bounce";
+        text.textContent = "音乐播放中";
+        btn.classList.remove('bg-amber-400');
+        btn.classList.add('bg-emerald-400');
+        scheduleNextBGMNote();
+      } else {
+        icon.className = "fa-solid fa-volume-xmark";
+        text.textContent = "开启背景音乐";
+        btn.classList.remove('bg-emerald-400');
+        btn.classList.add('bg-amber-400');
+        clearTimeout(bgmLoopTimer);
+      }
+    }
+
+    function setBGMUrgent(urgent) {
+      if (bgmUrgentMode === urgent) return;
+      bgmUrgentMode = urgent;
+      bgmNoteIndex = 0;
+      if (bgmPlaying) {
+        clearTimeout(bgmLoopTimer);
+        scheduleNextBGMNote();
+      }
+    }
+
+    function scheduleNextBGMNote() {
+      if (!bgmPlaying) return;
+      initAudioContext();
+
+      const melody = bgmUrgentMode ? URGENT_MELODY : NORMAL_MELODY;
+      const freq = melody[bgmNoteIndex % melody.length];
+      bgmNoteIndex++;
+
+      // 紧张模式下速度加快 (160ms)，普通模式下轻快节奏 (340ms)
+      const intervalMs = bgmUrgentMode ? 165 : 340;
+
+      if (freq > 0) {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = bgmUrgentMode ? 'sawtooth' : 'triangle';
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+
+        const vol = bgmUrgentMode ? 0.06 : 0.045;
+        gain.gain.setValueAtTime(vol, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + (intervalMs / 1000) * 0.9);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + (intervalMs / 1000) * 0.92);
+      }
+
+      bgmLoopTimer = setTimeout(scheduleNextBGMNote, intervalMs);
+    }
+
+    // 音效：答对、答错、解锁、通关
+    function playSFX(type) {
+      try {
+        initAudioContext();
+        const now = audioCtx.currentTime;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        if (type === 'step1_ok') {
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(523.25, now);
+          osc.frequency.setValueAtTime(659.25, now + 0.09);
+          gain.gain.setValueAtTime(0.12, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+          osc.start(now);
+          osc.stop(now + 0.25);
+        } else if (type === 'correct') {
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(523.25, now);
+          osc.frequency.setValueAtTime(659.25, now + 0.1);
+          osc.frequency.setValueAtTime(783.99, now + 0.2);
+          osc.frequency.setValueAtTime(1046.50, now + 0.3);
+          gain.gain.setValueAtTime(0.16, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
+          osc.start(now);
+          osc.stop(now + 0.5);
+        } else if (type === 'wrong') {
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(220, now);
+          osc.frequency.linearRampToValueAtTime(140, now + 0.35);
+          gain.gain.setValueAtTime(0.14, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.38);
+          osc.start(now);
+          osc.stop(now + 0.38);
+        } else if (type === 'unlock') {
+          osc.type = 'triangle';
+          [523, 659, 784, 1046, 1318].forEach((f, idx) => {
+            osc.frequency.setValueAtTime(f, now + idx * 0.08);
+          });
+          gain.gain.setValueAtTime(0.16, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.55);
+          osc.start(now);
+          osc.stop(now + 0.55);
+        }
+      } catch (e) {
+        // 忽略音频未激活错误
+      }
+    }
+
+    // =========================================================================
+    // 5. 语音朗读引擎 (Web Speech API)
+    // =========================================================================
+    function setSpeechRate(rate) {
+      speechRate = rate;
+      const slowBtn = document.getElementById('rate-slow');
+      const normBtn = document.getElementById('rate-normal');
+      if (rate < 0.9) {
+        slowBtn.className = "px-2.5 py-1 rounded-xl text-xs font-extrabold transition bg-white text-sky-600 shadow-sm";
+        normBtn.className = "px-2.5 py-1 rounded-xl text-xs font-extrabold transition text-slate-600 hover:text-sky-600";
+      } else {
+        normBtn.className = "px-2.5 py-1 rounded-xl text-xs font-extrabold transition bg-white text-sky-600 shadow-sm";
+        slowBtn.className = "px-2.5 py-1 rounded-xl text-xs font-extrabold transition text-slate-600 hover:text-sky-600";
+      }
+      showToast(`英语朗读语速已切换为：${rate < 0.9 ? '慢速清晰版' : '标准语速版'}`, "info");
+    }
+
+    function speakText(text, onEndCallback = null) {
+      if (!('speechSynthesis' in window)) {
+        if (onEndCallback) setTimeout(onEndCallback, 1200);
+        return;
+      }
+      window.speechSynthesis.cancel();
+
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'en-US';
+      utterance.rate = speechRate;
+      utterance.pitch = 1.05;
+
+      // 优先选择清晰的美式/英式英语女声
+      const voices = window.speechSynthesis.getVoices();
+      const preferred = voices.find(v => v.lang.includes('en') && (v.name.includes('Google') || v.name.includes('Samantha') || v.name.includes('Natural')));
+      if (preferred) utterance.voice = preferred;
+
+      let callbackFired = false;
+      const finish = () => {
+        if (!callbackFired) {
+          callbackFired = true;
+          if (onEndCallback) onEndCallback();
+        }
+      };
+
+      utterance.onend = finish;
+      utterance.onerror = finish;
+
+      window.speechSynthesis.speak(utterance);
+
+      // 安全兜底计时器：防止某些浏览器 speechSynthesis.onend 不触发导致卡死
+      const estimatedDuration = Math.max(2200, (text.split(' ').length * 520) / speechRate + 900);
+      setTimeout(finish, estimatedDuration);
+    }
+
+    // =========================================================================
+    // 6. 左侧闪卡精读区逻辑 (强制每张至少 5 秒)
+    // =========================================================================
+    function renderFlashcard(index, autoSpeak = true) {
+      const card = FLASHCARDS_DATA[index];
+      const total = FLASHCARDS_DATA.length;
+
+      document.getElementById('fc-progress-text').textContent = `${index + 1} / ${total}`;
+      document.getElementById('fc-tag-badge').textContent = card.tag;
+      document.getElementById('fc-type-badge').textContent = card.type;
+      document.getElementById('fc-illustration').textContent = card.icon;
+      document.getElementById('fc-word').textContent = card.word;
+      document.getElementById('fc-chinese').textContent = card.chinese;
+      document.getElementById('fc-malay').textContent = card.malay;
+      document.getElementById('fc-sentence').innerHTML = card.sentenceHTML;
+      document.getElementById('fc-sentence-zh').textContent = card.sentenceZh;
+
+      const grammarEl = document.getElementById('fc-grammar-note');
+      if (card.grammarNote) {
+        grammarEl.textContent = card.grammarNote;
+        grammarEl.classList.remove('hidden');
+      } else {
+        grammarEl.classList.add('hidden');
+      }
+
+      // 上一张按钮状态
+      document.getElementById('fc-prev-btn').disabled = (index === 0);
+
+      // 处理 5 秒精读强制倒计时
+      clearInterval(cardTimerInterval);
+      const nextBtn = document.getElementById('fc-next-btn');
+      const nextText = document.getElementById('fc-next-text');
+      const timerPill = document.getElementById('fc-timer-pill');
+      const completedBadge = document.getElementById('fc-completed-badge');
+
+      if (completedCards.has(index)) {
+        // 已经精读过此卡，直接允许下一张
+        completedBadge.classList.remove('hidden');
+        timerPill.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600"></i><span class="text-emerald-800">本卡已完成 5 秒精读</span>`;
+        timerPill.className = "px-4 py-2 rounded-2xl bg-emerald-100 border-2 border-emerald-300 font-black text-sm flex items-center gap-2";
+        nextBtn.disabled = false;
+        nextText.textContent = (index === total - 1) ? "全部完成！去测验" : "下一张";
+      } else {
+        // 首次阅读，启动 5 秒强制倒计时
+        completedBadge.classList.add('hidden');
+        cardSecondsLeft = 5;
+        nextBtn.disabled = true;
+        nextText.textContent = `下一张 (${cardSecondsLeft}s)`;
+        timerPill.className = "px-4 py-2 rounded-2xl bg-amber-100 border-2 border-amber-300 text-amber-900 font-black text-sm flex items-center gap-2";
+        timerPill.innerHTML = `<i class="fa-solid fa-hourglass-half animate-spin text-amber-600"></i><span>请精读本卡：<span id="fc-countdown" class="text-rose-600 text-base">${cardSecondsLeft}</span> 秒</span>`;
+
+        cardTimerInterval = setInterval(() => {
+          cardSecondsLeft--;
+          const cdEl = document.getElementById('fc-countdown');
+          if (cdEl) cdEl.textContent = cardSecondsLeft;
+          nextText.textContent = `下一张 (${cardSecondsLeft}s)`;
+
+          if (cardSecondsLeft <= 0) {
+            clearInterval(cardTimerInterval);
+            completedCards.add(index);
+            updateOverallFlashcardProgress();
+            renderFlashcard(index, false); // 刷新按钮解锁状态但不重复打断语音
+          }
+        }, 1000);
+      }
+
+      if (autoSpeak) {
+        speakCurrentFlashcard();
+      }
+    }
+
+    function speakCurrentFlashcard() {
+      const card = FLASHCARDS_DATA[currentCardIndex];
+      const ind = document.getElementById('fc-speaking-indicator');
+      ind.classList.remove('hidden');
+      const cleanWord = card.word.replace(/\//g, ', ');
+      speakText(`${cleanWord}. ${card.sentencePlain}`, () => {
+        ind.classList.add('hidden');
+      });
+    }
+
+    function speakSentenceOnly() {
+      const card = FLASHCARDS_DATA[currentCardIndex];
+      const ind = document.getElementById('fc-speaking-indicator');
+      ind.classList.remove('hidden');
+      speakText(card.sentencePlain, () => {
+        ind.classList.add('hidden');
+      });
+    }
+
+    function prevFlashcard() {
+      if (currentCardIndex > 0) {
+        currentCardIndex--;
+        renderFlashcard(currentCardIndex, true);
+      }
+    }
+
+    function nextFlashcard() {
+      if (!completedCards.has(currentCardIndex)) return;
+      if (currentCardIndex < FLASHCARDS_DATA.length - 1) {
+        currentCardIndex++;
+        renderFlashcard(currentCardIndex, true);
+      } else {
+        // 全部闪卡已完成！
+        updateOverallFlashcardProgress();
+        showToast("恭喜！全部 31 张闪卡精读完成，右侧测验已解锁！", "success");
+        document.getElementById('student-name').focus();
+      }
+    }
+
+    function updateOverallFlashcardProgress() {
+      const total = FLASHCARDS_DATA.length;
+      const done = completedCards.size;
+      const pct = Math.round((done / total) * 100);
+
+      document.getElementById('fc-progress-bar').style.width = `${pct}%`;
+      document.getElementById('lock-progress-label').textContent = `${done} / ${total} 张完成`;
+      document.getElementById('lock-progress-bar').style.width = `${pct}%`;
+
+      if (done >= total) {
+        const lockOverlay = document.getElementById('quiz-lock-overlay');
+        if (!lockOverlay.classList.contains('hidden')) {
+          playSFX('unlock');
+          lockOverlay.classList.add('opacity-0', 'pointer-events-none');
+          setTimeout(() => lockOverlay.classList.add('hidden'), 500);
+        }
+      }
+    }
+
+    // =========================================================================
+    // 7. 右侧测验逻辑 (先听完句子 -> 20秒内先选英文填空 -> 再选华语意思)
+    // =========================================================================
+    function shuffleArray(arr) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function startQuiz() {
+      const nameInput = document.getElementById('student-name').value.trim();
+      const classInput = document.getElementById('student-class').value;
+
+      if (!nameInput) {
+        showToast("请先输入你的姓名 (Student Name) 再开始闯关哦！", "error");
+        document.getElementById('student-name').focus();
+        return;
+      }
+
+      // 自动启动背景音乐 (如果尚未开启)
+      if (!bgmPlaying) {
+        toggleBGM();
+      }
+
+      studentInfo = { name: nameInput, className: classInput };
+      document.getElementById('student-badge-live').textContent = `学生: ${nameInput} (${classInput})`;
+
+      // 随机打乱题目顺序
+      quizQuestionsShuffled = shuffleArray(QUIZ_QUESTIONS);
+      currentQIndex = 0;
+      correctCount = 0;
+      wrongCount = 0;
+      reviewRecords = [];
+      updateLiveScoreUI();
+
+      document.getElementById('quiz-start-screen').classList.add('hidden');
+      document.getElementById('quiz-result-screen').classList.add('hidden');
+      const activeScreen = document.getElementById('quiz-active-screen');
+      activeScreen.classList.remove('hidden');
+      activeScreen.classList.add('flex');
+
+      loadQuizQuestion(0);
+    }
+
+    function loadQuizQuestion(qIdx) {
+      clearInterval(quizTimerInterval);
+      setBGMUrgent(false);
+
+      const q = quizQuestionsShuffled[qIdx];
+      quizStep = 1;
+      quizSecondsLeft = 20;
+      isSentenceReading = true;
+
+      document.getElementById('q-number-badge').textContent = `第 ${qIdx + 1} / ${quizQuestionsShuffled.length} 题`;
+      document.getElementById('q-category-badge').textContent = q.category;
+
+      // 渲染挖空句子 (带括弧华语注释)
+      const formattedSentence = q.sentenceDisplay.replace(
+        "______",
+        `<span id="blank-slot" class="inline-block min-w-[115px] px-3 py-0.5 mx-1 border-b-4 border-dashed border-sky-500 text-center text-sky-600 bg-white rounded-xl font-black">______</span>`
+      );
+      document.getElementById('q-sentence-display').innerHTML = formattedSentence;
+
+      // 重置双步指示器
+      document.getElementById('step1-indicator').className = "p-2.5 rounded-2xl border-2 border-sky-500 bg-sky-100 text-sky-900 font-black text-xs sm:text-sm text-center shadow-sm";
+      document.getElementById('step2-indicator').className = "p-2.5 rounded-2xl border-2 border-slate-200 bg-slate-50 text-slate-400 font-black text-xs sm:text-sm text-center";
+
+      // 渲染第一步（英文选项）并锁定界面，直到句子朗读完毕
+      renderStepOptions(shuffleArray(q.enOptions), 'en');
+      lockOptionsForReading(true);
+
+      // 开始朗读完整英语句子
+      speakText(q.sentenceSpeak, () => {
+        if (currentQIndex !== qIdx) return;
+        isSentenceReading = false;
+        lockOptionsForReading(false);
+        startQuestion20sTimer();
+      });
+    }
+
+    function lockOptionsForReading(locked) {
+      const shield = document.getElementById('q-reading-shield');
+      const replayBtn = document.getElementById('q-replay-btn');
+      const statusBadge = document.getElementById('audio-lock-status');
+      const timerBox = document.getElementById('quiz-timer-box');
+      const timerText = document.getElementById('quiz-timer-text');
+
+      if (locked) {
+        shield.classList.remove('hidden');
+        replayBtn.disabled = true;
+        statusBadge.className = "text-xs font-black px-3 py-1 rounded-full bg-amber-200 text-amber-900 flex items-center gap-2";
+        statusBadge.innerHTML = `<i class="fa-solid fa-volume-high animate-pulse"></i> 正在朗读完整句子（读完后解锁作答）...`;
+        timerBox.className = "px-4 py-1.5 rounded-2xl bg-slate-100 border-2 border-slate-300 text-slate-600 font-black text-sm flex items-center gap-2";
+        timerText.textContent = "等待朗读...";
+      } else {
+        shield.classList.add('hidden');
+        replayBtn.disabled = false;
+        statusBadge.className = "text-xs font-black px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 flex items-center gap-1.5";
+        statusBadge.innerHTML = `<i class="fa-solid fa-unlock"></i> 句子读完啦！请快作答！`;
+      }
+    }
+
+    function replayQuizSentence() {
+      if (isSentenceReading) return;
+      const q = quizQuestionsShuffled[currentQIndex];
+      speakText(q.sentenceSpeak);
+    }
+
+    function startQuestion20sTimer() {
+      clearInterval(quizTimerInterval);
+      quizSecondsLeft = 20;
+      updateQuizTimerUI();
+
+      quizTimerInterval = setInterval(() => {
+        quizSecondsLeft--;
+        updateQuizTimerUI();
+
+        // 最后 5 秒：背景音乐自动切换为紧张模式！
+        if (quizSecondsLeft <= 5 && quizSecondsLeft > 0) {
+          setBGMUrgent(true);
+        }
+
+        if (quizSecondsLeft <= 0) {
+          clearInterval(quizTimerInterval);
+          setBGMUrgent(false);
+          handleQuestionTimeout();
+        }
+      }, 1000);
+    }
+
+    function updateQuizTimerUI() {
+      const timerBox = document.getElementById('quiz-timer-box');
+      const timerText = document.getElementById('quiz-timer-text');
+      timerText.textContent = `${quizSecondsLeft} 秒`;
+
+      if (quizSecondsLeft <= 5) {
+        timerBox.className = "px-4 py-1.5 rounded-2xl border-2 border-rose-600 font-black text-base flex items-center gap-2 timer-urgent shadow-md";
+      } else if (quizSecondsLeft <= 10) {
+        timerBox.className = "px-4 py-1.5 rounded-2xl bg-amber-100 border-2 border-amber-400 text-amber-900 font-black text-base flex items-center gap-2";
+      } else {
+        timerBox.className = "px-4 py-1.5 rounded-2xl bg-emerald-100 border-2 border-emerald-400 text-emerald-900 font-black text-base flex items-center gap-2";
+      }
+    }
+
+    function renderStepOptions(optionsList, mode) {
+      const grid = document.getElementById('q-options-grid');
+      grid.innerHTML = "";
+      const labels = ["A", "B", "C", "D"];
+
+      optionsList.forEach((opt, i) => {
+        const btn = document.createElement('button');
+        btn.className = "btn-chunky p-3.5 sm:p-4 rounded-2xl bg-white hover:bg-sky-50 border-2 border-sky-200 text-left font-black text-slate-800 text-base sm:text-lg flex items-center gap-3 transition";
+        btn.innerHTML = `
+          <span class="w-8 h-8 rounded-xl ${mode === 'en' ? 'bg-sky-500' : 'bg-rose-500'} text-white flex items-center justify-center text-sm font-black shrink-0">
+            ${labels[i]}
+          </span>
+          <span class="break-words">${opt}</span>
+        `;
+        btn.onclick = () => handleOptionSelect(opt, btn);
+        grid.appendChild(btn);
+      });
+    }
+
+    function handleOptionSelect(selectedValue, btnElement) {
+      if (isSentenceReading) return;
+      const q = quizQuestionsShuffled[currentQIndex];
+
+      if (quizStep === 1) {
+        // 第一步：检查英文填空答案
+        if (selectedValue === q.enAnswer) {
+          playSFX('step1_ok');
+          // 把选中的英文填入句子横线处
+          const blankSlot = document.getElementById('blank-slot');
+          if (blankSlot) {
+            blankSlot.textContent = selectedValue;
+            blankSlot.className = "inline-block px-3 py-0.5 mx-1 bg-emerald-100 border-b-4 border-emerald-500 text-emerald-800 rounded-xl font-black animate-pop";
+          }
+
+          // 切换到第二步：选出该英文答案的华语意思
+          quizStep = 2;
+          document.getElementById('step1-indicator').className = "p-2.5 rounded-2xl border-2 border-emerald-400 bg-emerald-50 text-emerald-800 font-black text-xs sm:text-sm text-center";
+          document.getElementById('step1-indicator').innerHTML = `<i class="fa-solid fa-check mr-1"></i>① 英文填空正确 (${q.enAnswer})`;
+
+          document.getElementById('step2-indicator').className = "p-2.5 rounded-2xl border-2 border-rose-500 bg-rose-50 text-rose-900 font-black text-xs sm:text-sm text-center shadow-sm animate-pop";
+          document.getElementById('step2-indicator').innerHTML = `② 快选出 "${q.enAnswer}" 的华语意思！`;
+
+          renderStepOptions(shuffleArray(q.zhOptions), 'zh');
+        } else {
+          // 英文选错 -> 记为本题答错并进入下一题
+          recordQuestionResult(false, `英文选错 (选了 "${selectedValue}"，正解 "${q.enAnswer}")`);
+        }
+      } else if (quizStep === 2) {
+        // 第二步：检查华语意思答案
+        if (selectedValue === q.zhAnswer) {
+          recordQuestionResult(true, "完全正确");
+        } else {
+          recordQuestionResult(false, `华语意思选错 (选了 "${selectedValue}"，正解 "${q.zhAnswer}")`);
+        }
+      }
+    }
+
+    function handleQuestionTimeout() {
+      const q = quizQuestionsShuffled[currentQIndex];
+      recordQuestionResult(false, `超过 20 秒未作答 (正解: ${q.enAnswer} = ${q.zhAnswer})`);
+    }
+
+    function recordQuestionResult(isCorrect, detailNote) {
+      clearInterval(quizTimerInterval);
+      setBGMUrgent(false);
+      window.speechSynthesis.cancel();
+
+      const q = quizQuestionsShuffled[currentQIndex];
+      if (isCorrect) {
+        correctCount++;
+        playSFX('correct');
+        showToast(`答对啦！${q.enAnswer} = ${q.zhAnswer} (+1分)`, "success");
+      } else {
+        wrongCount++;
+        playSFX('wrong');
+        showToast(`答错了！正确答案：${q.enAnswer} (${q.zhAnswer})`, "error");
+      }
+
+      reviewRecords.push({
+        qNum: currentQIndex + 1,
+        word: q.enAnswer,
+        chinese: q.zhAnswer,
+        isCorrect: isCorrect,
+        note: detailNote
+      });
+
+      updateLiveScoreUI();
+
+      // 短暂延迟后进入下一题或结束测验
+      setTimeout(() => {
+        if (currentQIndex < quizQuestionsShuffled.length - 1) {
+          currentQIndex++;
+          loadQuizQuestion(currentQIndex);
+        } else {
+          finishQuizAndSubmitData();
+        }
+      }, 950);
+    }
+
+    function updateLiveScoreUI() {
+      document.getElementById('live-correct').textContent = correctCount;
+      document.getElementById('live-wrong').textContent = wrongCount;
+    }
+
+    // =========================================================================
+    // 8. 测验结束：汇总成绩至 Google Sheet & 发送通知邮件至 g-88545190@moe-dl.edu.my
+    // =========================================================================
+    function finishQuizAndSubmitData() {
+      clearInterval(quizTimerInterval);
+      setBGMUrgent(false);
+      playSFX('unlock');
+
+      const total = quizQuestionsShuffled.length;
+      const scorePct = Math.round((correctCount / total) * 100);
+
+      document.getElementById('quiz-active-screen').classList.add('hidden');
+      document.getElementById('quiz-active-screen').classList.remove('flex');
+      const resScreen = document.getElementById('quiz-result-screen');
+      resScreen.classList.remove('hidden');
+      resScreen.classList.add('flex');
+
+      document.getElementById('res-student-info').textContent = `学生：${studentInfo.name} | 班级：${studentInfo.className}`;
+      document.getElementById('res-correct').textContent = `${correctCount} 题`;
+      document.getElementById('res-wrong').textContent = `${wrongCount} 题`;
+      document.getElementById('res-score').textContent = `${scorePct}%`;
+
+      // 生成逐题回顾列表
+      const listEl = document.getElementById('res-review-list');
+      listEl.innerHTML = "";
+      const wrongSummaryArr = [];
+
+      reviewRecords.forEach(item => {
+        if (!item.isCorrect) {
+          wrongSummaryArr.push(`第${item.qNum}题[${item.word}-${item.chinese}]`);
+        }
+        const row = document.createElement('div');
+        row.className = `p-2 rounded-xl border flex items-center justify-between ${item.isCorrect ? 'bg-emerald-50 border-emerald-200 text-emerald-900' : 'bg-rose-50 border-rose-200 text-rose-900'}`;
+        row.innerHTML = `
+          <span class="font-bold">第 ${item.qNum} 题：<strong>${item.word}</strong> (${item.chinese})</span>
+          <span class="font-black">${item.isCorrect ? '✅ 正确' : '❌ ' + item.note}</span>
+        `;
+        listEl.appendChild(row);
+      });
+
+      const wrongDetailsStr = wrongSummaryArr.length > 0 ? wrongSummaryArr.join("; ") : "全对！无错题";
+
+      // 构造提交数据包
+      const payload = {
+        timestamp: new Date().toLocaleString("zh-MY"),
+        name: studentInfo.name,
+        className: studentInfo.className,
+        total: total,
+        correct: correctCount,
+        wrong: wrongCount,
+        score: scorePct,
+        wrongDetails: wrongDetailsStr
+      };
+
+      // 1) 保存到本地汇总缓存
+      saveRecordLocally(payload);
+
+      // 2) 配置一键邮件通知链接 (mailto:g-88545190@moe-dl.edu.my)
+      const subject = encodeURIComponent(`【Year 3 Unit 1 成绩通知】${payload.className} - ${payload.name} (对${payload.correct}题 / 错${payload.wrong}题)`);
+      const body = encodeURIComponent(
+        `老师您好，\n\n学生已完成 Year 3 English Unit 1: Welcome! 闪卡与语法闯关：\n` +
+        `• 学生姓名：${payload.name}\n` +
+        `• 班级：${payload.className}\n` +
+        `• 总题数：${payload.total} 题\n` +
+        `• 答对题数：${payload.correct} 题\n` +
+        `• 答错题数：${payload.wrong} 题\n` +
+        `• 得分率：${payload.score}%\n` +
+        `• 错题记录：${payload.wrongDetails}\n` +
+        `• 提交时间：${payload.timestamp}`
+      );
+      document.getElementById('mailto-fallback-btn').href = `mailto:${TEACHER_EMAIL}?subject=${subject}&body=${body}`;
+
+      // 3) 若老师已配置 Google Apps Script Web App URL，自动静默写入同一张 Google Sheet 并触发自动发邮件
+      sendToGoogleSheetWebhook(payload);
+    }
+
+    async function sendToGoogleSheetWebhook(payload) {
+      const webhookUrl = localStorage.getItem(STORAGE_WEBHOOK_KEY) || "";
+      const syncBadge = document.getElementById('sync-badge');
+      const syncMsg = document.getElementById('sync-message');
+
+      if (!webhookUrl) {
+        syncBadge.textContent = "等待连接表格";
+        syncBadge.className = "text-xs font-extrabold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-800";
+        syncMsg.innerHTML = `本机已记录成绩！如需全班自动汇总进同一张 Google Sheet 并自动发邮件给 <strong>${TEACHER_EMAIL}</strong>，请点击右上角「教师后台」贴上 Apps Script 网址，或点击下方「直接发 Email 通知老师」。`;
+        return;
+      }
+
+      syncBadge.textContent = "正在同步...";
+      try {
+        await fetch(webhookUrl, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+        syncBadge.textContent = "已同步 Google Sheet & 已发邮件";
+        syncBadge.className = "text-xs font-extrabold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800";
+        syncMsg.innerHTML = `✅ 成功！成绩（答对 <strong>${payload.correct}</strong> 题，答错 <strong>${payload.wrong}</strong> 题）已集中存入老师的 Google Sheet，并已自动发送邮件通知至 <strong>${TEACHER_EMAIL}</strong>！`;
+      } catch (err) {
+        syncBadge.textContent = "网络同步异常";
+        syncBadge.className = "text-xs font-extrabold px-2.5 py-0.5 rounded-full bg-rose-100 text-rose-800";
+        syncMsg.textContent = "自动同步遇到网络限制，请点击下方「直接发 Email 通知老师」按钮发送成绩。";
+      }
+    }
+
+    function saveRecordLocally(payload) {
+      try {
+        const existing = JSON.parse(localStorage.getItem(STORAGE_RECORDS_KEY) || "[]");
+        existing.push(payload);
+        localStorage.setItem(STORAGE_RECORDS_KEY, JSON.stringify(existing));
+      } catch (e) {}
+    }
+
+    function copySheetRow() {
+      const existing = JSON.parse(localStorage.getItem(STORAGE_RECORDS_KEY) || "[]");
+      const last = existing[existing.length - 1];
+      if (!last) return;
+
+      // Tab 分隔格式，直接粘贴进 Google Sheet 会自动分列对齐！
+      const tsvRow = `${last.timestamp}\t${last.name}\t${last.className}\t${last.total}\t${last.correct}\t${last.wrong}\t${last.score}%\t${last.wrongDetails}`;
+      copyToClipboard(tsvRow, "已复制整行表格数据！直接去 Google Sheet 按 Ctrl+V 粘贴即可自动分列！");
+    }
+
+    function restartQuizOnly() {
+      document.getElementById('quiz-result-screen').classList.add('hidden');
+      document.getElementById('quiz-result-screen').classList.remove('flex');
+      document.getElementById('quiz-start-screen').classList.remove('hidden');
+    }
+
+    // =========================================================================
+    // 9. 教师后台弹窗 & 剪贴板工具
+    // =========================================================================
+    function openTeacherModal() {
+      const savedUrl = localStorage.getItem(STORAGE_WEBHOOK_KEY) || "";
+      document.getElementById('webhook-url-input').value = savedUrl;
+
+      const records = JSON.parse(localStorage.getItem(STORAGE_RECORDS_KEY) || "[]");
+      document.getElementById('local-record-count').textContent = records.length;
+      const previewEl = document.getElementById('local-records-preview');
+
+      if (records.length === 0) {
+        previewEl.textContent = "暂无学生提交记录。";
+      } else {
+        previewEl.innerHTML = records.map((r, i) =>
+          `<div class="py-1 border-b border-slate-100 flex justify-between">
+            <span><strong>#${i + 1} ${r.name}</strong> (${r.className})</span>
+            <span class="font-bold text-emerald-700">对 ${r.correct} / 错 ${r.wrong} (${r.score}%)</span>
+          </div>`
+        ).join("");
+      }
+
+      document.getElementById('teacher-modal').classList.remove('hidden');
+    }
+
+    function closeTeacherModal() {
+      document.getElementById('teacher-modal').classList.add('hidden');
+    }
+
+    function saveWebhookUrl() {
+      const url = document.getElementById('webhook-url-input').value.trim();
+      localStorage.setItem(STORAGE_WEBHOOK_KEY, url);
+      showToast(url ? "Google Sheet 自动汇总网址已保存！" : "已清空自定义网址", "success");
+    }
+
+    function copyAppsScriptCode() {
+      const code = document.getElementById('apps-script-code').value;
+      copyToClipboard(code, "Google Apps Script 代码已复制！请粘贴到 Google Sheet 的 Apps Script 中部署。");
+    }
+
+    function exportAllLocalCSV() {
+      const records = JSON.parse(localStorage.getItem(STORAGE_RECORDS_KEY) || "[]");
+      if (records.length === 0) {
+        showToast("目前还没有学生成绩记录可导出哦！", "error");
+        return;
+      }
+      const headers = ["提交时间,学生姓名,班级,总题数,答对题数,答错题数,得分率,错题记录"];
+      const rows = records.map(r =>
+        `"${r.timestamp}","${r.name}","${r.className}",${r.total},${r.correct},${r.wrong},"${r.score}%","${r.wrongDetails}"`
+      );
+      const csvContent = "\uFEFF" + headers.concat(rows).join("\n");
+      const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = `Year3_Unit1_成绩总表_${new Date().toISOString().slice(0, 10)}.csv`;
+      link.click();
+      showToast("已导出全班汇总 CSV 表格文件！", "success");
+    }
+
+    function copyToClipboard(text, successMsg) {
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      try {
+        document.execCommand('copy');
+        showToast(successMsg, "success");
+      } catch (e) {
+        showToast("复制失败，请手动全选复制", "error");
+      }
+      document.body.removeChild(textarea);
+    }
+
+    function showToast(msg, type = "info") {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      const colors = {
+        success: "bg-emerald-600 text-white border-emerald-400",
+        error: "bg-rose-600 text-white border-rose-400",
+        info: "bg-slate-800 text-white border-slate-600"
+      };
+      toast.className = `px-4 py-3 rounded-2xl shadow-xl border-2 font-extrabold text-xs sm:text-sm max-w-sm animate-pop ${colors[type] || colors.info}`;
+      toast.textContent = msg;
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'transition-opacity', 'duration-300');
+        setTimeout(() => toast.remove(), 300);
+      }, 3200);
+    }
+
+    // =========================================================================
+    // 10. 页面初始化启动
+    // =========================================================================
+    window.onload = function () {
+      // 预加载浏览器语音列表
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.getVoices();
+      }
+      // 初始化第一张闪卡并启动 5 秒精读倒计时
+      renderFlashcard(0, false);
+      updateOverallFlashcardProgress();
+    };
+  </script>
+</body>
+</html>
